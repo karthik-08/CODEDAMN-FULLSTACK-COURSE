@@ -1,0 +1,142 @@
+Internet Fundamentals Notes.
+Learn the basics of web 
+
+what is DNS ?
+
+→ Basically when we write a domain name or any website name in the browser , machine cannot understand it .
+
+→ Now , when we hit enter in the browser after writing the website/domain name , this machine will interact with other machine in the internet.
+
+→ Domain name system basically helps to get the result or reply from the other servers in the internet. It resolves that which server has to be talked to when we are logging to some websites in the browser.
+
+→ DNS is a technology which helps in mapping the host name /domain name to the IP address which machines can understand.
+
+→ Browser firstly asks a standalone DNS Resolver (DNS server) (1.1.1.1 or 8.8.8.8) to map the host name or domain name to particular IP address.
+
+→ Now it may be a case where this first Dns resolver does not know the IP address of the host name.
+
+→ So this DNS resolver will ask some other DNS servers to know where the IP addresses of domain ‘.com’ are with whom 
+
+→ So this may be happen for a while and finally primary DNS server will communicate with some other DNS server which has the ip address of required host name.
+
+→ and in this way it talks to the server sitting at that ip address and get the HTML file or any other resource from that server and then finally rendered in the browser .
+
+→ Now the primary DNS server will cache this ip address of the host name so that when again want to talk to this ip address it will not have to ask others for ip adress.
+
+******************HTTP STATUS CODES ****************
+
+→ HTTP is a set of rules that has to be followed by client and server to establish successful connection .
+
+→ status codes are a form of acknowledgement from server to client , it  tells the status of query done by client and server says whether the resource is found (200 ok) or not found (404 not found).
+
+→HTTP is plain text protocol which means we can hear the communication over the wire between client and server as it happens in English text .
+
+→ Information responses from server have status codes like 100 or some thing
+
+→ successful responses from server have status codes like 200 ok …
+
+→Redirection responses are like 300 or something in that range.
+
+→client error responses are like 400 and in that range.
+
+→server error responses are like 500 and in that range which maybe about server crashes or stuff like that .
+
+********PORT NUMBERS ***************
+
+→ Port numbers are unique id given to services running on a machine .
+
+→ Port numbers help the servers to resolve which incoming request has to be associated to which services running on the server.
+
+→ port number is associated along with IP address it is like sending request to that server in that IP address and in that server also connecting to particular service running on a unique port number.
+
+→ HTTP runs on port number 80  23:45:56:53:port number
+
+→HTTPs runs on port number 443  these all port number are by convention not a rule u can run any service on any port number.
+
+→
+
+If your computer is a house, think of port numbers as doors - ways to enter and exit house. You can have multiple ports "opened" that will allow processes to enter and exit their data through the computer. There are a few important things about port numbers though:
+
+- Port numbers under 1023 (i.e. from 0 to 1023) are privileged ports. That means they require certain administrative access to be "opened"
+- There are some port numbers reserved for certain operations. Although you can change them, but they still technically are popular choices. For example, HTTP runs on port 80 (or 8080), HTTPS on port 443 (or 8443). SSH runs on port 22. DNS runs on port 53, and so on.
+- Port numbers are not infinite.
+- You have a finite number of ports, and the range of ports is from 0 to 65535. This means you cannot start a process on port number 70000 (as it is outside the valid port range)
+
+
+******************** HTTP REQUEST METHODS **********************
+
+→ First thing client does after connection with server is send the request method , it is the first thing in request headers sent by the client.
+
+→ so there are lot of way in which the client interacts with the servers , mostly users visit the websites for this client gets the resources like HTML file to render website on browser.
+
+here we are not uploading any data , not modifying any data just visiting the websites
+
+→ some of the request methods are GET,POST,PUT,PATCH,DELETE etc.
+
+→ POST request is usually for sending data to the [servers.It](http://servers.It) fits in scenarios like login in a website where u r entering userid and password and sending to the server via POST method this allows to send payload of data as a body to server.
+
+→ GET method by convention not useful for sending the payload of data as body to server but it could be used but should not be used and it could because HTTP is plain text protocol.
+
+→ POST method can be used to upload huge size of files on to servers , for logging in to websites because it supports payload as separate body in request and response.
+
+→PUT is used when we want to create a resource client and server both know that if PUT method is used , resource will get created.
+
+→ Mulitple HTTP methods can be handled in same single path of server.
+
+→ we can have different handler on same URL for different HTTP methods
+
+ex : [xyxxcvz.com/api/posts](http://xyxxcvz.com/api/posts) can be used in various ways :
+
+if I use GET method with this : will return json of all posts.
+
+PUT→ create a new post 
+
+DELETE → delete a particular post
+
+PATCH → want to edit a post
+
+→ Functionality wise post is most superior method because it can act as get,put,delete,patch methods because it supports body of payload which allows to carry data
+
+**************************************REQUEST HEADERS ***********
+
+→ request header looks like this 
+
+GET / HTTP/1.1
+
+Host : [example.com](http://example.com)   // header starts from here.
+
+Connection : keep-alive
+
+cache-control:max-age=0…
+
+remain part ……….
+
+these all header follow a format of key : value , header : value
+
+→ we can also have custom header in request headers
+
+→ HTTP headers are just more information on requests what u want to do with requests , to the browsers
+
+→ for ex connection header tells that keep underlying TCP connection alive 
+
+→ headers also sent from servers to the client
+
+→ HTTP header are different from HTTP status codes
+
+→http headers are different in  HTTP and https request and responses.
+
+→ netcat is a utility for opening tcp/udp connections to different services.
+
+→ tcp/udp are two layer 4 protocols handling how connections should be established and maintained among remote machines .HTTP and FTP are built on top of TCP /udp 
+
+→ this is how u make connection in netcat :
+
+NC domain name 80 -vvv verbose mode
+
+→ u will get message saying successful connection
+
+GET / HTTP/1.1 (with this version u have to specify Host header also)
+
+Host : [google.com](http://google.com) or any domain name 
+
+then u will get the Html file or HTML body in raw format which in general in browser it gets parsed and rendered well .
